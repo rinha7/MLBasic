@@ -1,3 +1,5 @@
+# linear regression의 간단한 구
+
 import tensorflow as tf
 
 W = tf.Variable(tf.random_normal([1]), name='weight')
@@ -6,6 +8,7 @@ b = tf.Variable(tf.random_normal([1]), name='bias')
 X = tf.placeholder(tf.float32, shape=[None])
 Y = tf.placeholder(tf.float32, shape=[None])
 
+# H(x) = Wx + b로 표현할 수 있음
 hypothesis = X * W + b
 
 
@@ -25,5 +28,5 @@ for step in range(2001):
         print(step, cost_val, W_val, b_val)
 # placeholder?
 
-print(sess.run(hypothesis, feed_dict={X:[5]})) # X가 5일때 Y의 값은 얼마일까? 를 예측함
+print(sess.run(hypothesis, feed_dict={X:[55]})) # X가 5일때 Y의 값은 얼마일까? 를 예측함
 print(sess.run(hypothesis, feed_dict={X:[2.5]}))
