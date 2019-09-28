@@ -41,6 +41,9 @@ cost_i = tf.nn.softmax_cross_entropy_with_logits(logits = logits, labels = Y_one
 
 cost = tf.reduce_mean(cost_i)
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
+# learning rate 은 크면 값을 못찾을 수 있고 작으면 찾기 힘들어진다
+# standardization?
+# Overfitting
 
 prediction = tf.argmax(hypothesis, 1)
 correct_prediction = tf.equal(prediction, tf.argmax(Y_one_hot,1))
@@ -61,5 +64,7 @@ with tf.Session() as sess:
 
 
     # flatten은 [[1],[0]]처럼 생긴 배열을 [1,0]과 같은 형태로 바꾸어주는 역할을 수행한다.
+    # zip 은 묶는것, 이거는 나중에 해보자
     for p, y in zip(pred, y_data.flatten()):
+        # 예측한 값과 일치하는지 predict와 원래 y값을 비교, 일치하면 True를 출-력
         print("[{}] Prediction : {} True Y: {}".format(p == int(y), p , int(y)))
